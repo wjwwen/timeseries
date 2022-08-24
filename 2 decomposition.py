@@ -51,6 +51,7 @@ ax.set_ylabel('Detrended value')
 
 # %%
 # SEASONALITY
+# Generating seasonal subplots figure
 
 def plot_seasons(detrended, order, plot_mean = True):
     colors = plt.rcParams['axes.prop_cycle'].by_key()['color']

@@ -32,7 +32,8 @@ plt.plot(DJIA['DATE'].iloc[1:], differences[1:])
 plt.xlabel('Date')
 plt.ylabel('Differences')
 
-# To recover the original data we must simply integrate the differenced points. Note that in the differentiate function we explicitly included the first value of the original data in the output to make this possible.
+# To recover the original data, integrate the differenced points. 
+# The differentiate function, included the first value of the original data in the output to make this possible.
 def integrate(values, d=1):
     x = np.cumsum(values)
     
@@ -48,8 +49,8 @@ np.mean(rebuilt-values)
 
 # %%
 # WINDOWING
-# calculate running values of some quantity. 
-# This requires the use of windowing functions that return the proper element at each step.
+# Calculate running values of some quantity. 
+# Windowing: return the proper element at each step.
 
 def rolling(x, order):
     npoints = x.shape[0]
@@ -69,7 +70,7 @@ rolling(values, 2).max(axis=1)
 
 # %%
 # EXPONENTIAL SMOOTHING
-
+# Smoothing noise. 
 def ES(values, alpha= 0.05):
     N = len(values)
     S = [values[0]*alpha]
@@ -79,6 +80,7 @@ def ES(values, alpha= 0.05):
         
     return np.array(S)
 
+# the smaller the value of alpha, the smoother (less noisy) the result
 smooth = []
 smooth.append(ES(differences[1:], 0.01))
 smooth.append(ES(differences[1:], 0.1))
@@ -95,14 +97,19 @@ plt.legend()
 # %% 
 # Missing Data
 
+# Step 1: Generate a dataset with missing values
 x = np.linspace(-np.pi, np.pi, 100)
 y = np.cos(x)
 y_missing = y.copy()
 y_missing[40:55] = np.nan
 
+# Cosine function with several missing values at the peak
 plt.plot(x, y, '*')
 plt.plot(x, y_missing)
 
+
+# Most common strategy is to simply keep the last known 'good' value and use it to fill in the missing data points. 
+# This approach is unable to deal with missing values at the beginning of the dataset.
 def ffill(y):
     y0 = y.copy()
     N = len(y0)
@@ -116,6 +123,8 @@ def ffill(y):
 
     return y0
 
+# Naturally, the opposite approach is also common where we use the next good value. 
+# Easily handle the missing initial values but can do nothing about any values lost at the end of the time series
 def bfill(y):
     y0 = y.copy()
     N = len(y0)
@@ -129,6 +138,9 @@ def bfill(y):
     
     return y0
 
+
+# Back-fill and Forward-fill are simple but powerful approachs to deal with missing data. 
+# One common approach is to interpolate between the previous and the next value and connecting them with a straight line.
 def interpolate(y):
     y0 = y.copy()
     N = len(y0)
@@ -214,6 +226,7 @@ ax.set_xlabel('Date')
 
 # %%
 # JACKKNIFE ESTIMATORS
+# Used to estimate the variance and bias of a large population. 
 
 def jackknife(x, func, variance = False):
     N = len(x)
@@ -234,6 +247,7 @@ jackknife(x, np.std, True)
 
 # %%
 # BOOTSTRAPPING
+# Sample (with replacement) from the original population to get a measure of how much variability can be expected
 
 def bootstrapping(x, n_samples, func=np.mean):
     y = x.copy()
