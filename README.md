@@ -6,6 +6,7 @@
 - TBATS/BATS
 - LSTM
 - Bi-LSTM
+- GARCH/ARCH
 
 **Level**: average value in the series <br>
 **Trend**: increasing/decreasing value in the series <br>
@@ -98,3 +99,11 @@ Capable of learning long-term dependencies, especially in sequence prediction pr
 No need to check for stationarity/correct it, but stationary data lends support for better neural network learing. <br>
 BI-LSTM: backwards/forwards sequence information
 
+# GARCH/ARCH
+- Generalised Autoregressive Conditional Heteroskedasticity Model
+- Commonly used to estimate the volatility of returns for stocks/currencies
+- GARCH considers volatility of the previous period, ARCH does not
+- GARCH used where variance error is believed to be serially autocorrelated
+- GARCH assume variance of the error term follows ARMA
+
+![Image](https://cdn.corporatefinanceinstitute.com/assets/heteroskedasticity.png)
