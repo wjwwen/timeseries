@@ -4,9 +4,9 @@
 - SARIMA
 - SARIMAX
 - TBATS/BATS
-- LSTM
-- Bi-LSTM
+- LSTM/Bi-LSTM
 - GARCH/ARCH
+- VECM
 
 **Level**: average value in the series <br>
 **Trend**: increasing/decreasing value in the series <br>
@@ -101,9 +101,15 @@ BI-LSTM: backwards/forwards sequence information
 
 # GARCH/ARCH
 - Generalised Autoregressive Conditional Heteroskedasticity Model
+- Explains considitional variance that changes over time
+- Excellent accuracy in short-term forecasting, hard to apply for long-term
 - Commonly used to estimate the volatility of returns for stocks/currencies
 - GARCH considers volatility of the previous period, ARCH does not
 - GARCH used where variance error is believed to be serially autocorrelated
 - GARCH assume variance of the error term follows ARMA
 
 ![Image](https://cdn.corporatefinanceinstitute.com/assets/heteroskedasticity.png)
+
+# VECM
+- Vector Error Correction Model
+- e.g. Forecast prices using interrelationship beween futures and spot price
