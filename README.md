@@ -1,12 +1,12 @@
 # Time Series Analysis
 ## Models
 - ARIMA
-- SARIMA
-- SARIMAX
+- SARIMA/SARIMAX
 - TBATS/BATS
 - LSTM/Bi-LSTM
 - GARCH/ARCH
-- VECM
+- GLUONTS (Apache MXNet)
+- VAR/VECM
 
 **Level**: average value in the series <br>
 **Trend**: increasing/decreasing value in the series <br>
@@ -110,6 +110,20 @@ BI-LSTM: backwards/forwards sequence information
 
 ![Image](https://cdn.corporatefinanceinstitute.com/assets/heteroskedasticity.png)
 
-# VECM
-- Vector Error Correction Model
+# GLUONTS
+- AWS Model based on Gluon interface to Apache MXNet
+- Apache MXNet: open-source deep learning framework used to train and deploy NN
+
+## DeepAREstimator
+- **Estimator**: represents a model that can be trained on a dataset to yield a Predictor 
+- **Predictor**: can later be used to make predictions on unseen data
+- **Evaluator**: model evaluation (MSE/MASE/symmetric MAPE/RMSE, weighted quantile losses)
+
+Documentations:
+- https://aws.amazon.com/blogs/machine-learning/creating-neural-time-series-models-with-gluon-time-series/
+- https://aws.amazon.com/blogs/machine-learning/introducing-gluon-an-easy-to-use-programming-interface-for-flexible-deep-learning/
+
+# VAR/VECM
+- Vector Auto-Regressive (VAR)
+- Vector Error Correction Model (VECM)
 - e.g. Forecast prices using interrelationship beween futures and spot price
