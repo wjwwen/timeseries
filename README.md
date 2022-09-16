@@ -83,6 +83,11 @@ y_12lag_detrend =  y_detrend - y_detrend.shift(12)
 test_stationarity(y_12lag_detrend,'12 lag differenced de-trended data')
 ADF_test(y_12lag_detrend,'12 lag differenced de-trended data')
 ```
+
+# Autoregression Models
+Time series is modeled as a linear combination of its own lags, i.e. the past values of the series are used to forecast the current/future
+- ARIMA/SARIMA/SARIMAX
+
 # SARIMA/SARIMAX with Fourier terms
 Two major drawbacks: <br>
 (1) One model can only have a single seasonal effect <br>
@@ -124,6 +129,31 @@ Documentations:
 - https://aws.amazon.com/blogs/machine-learning/introducing-gluon-an-easy-to-use-programming-interface-for-flexible-deep-learning/
 
 # VAR/VECM
-- Vector Auto-Regressive (VAR)
+- Vector Auto-Regressive (VAR) - when two/more time series infleunce each other
 - Vector Error Correction Model (VECM)
 - e.g. Forecast prices using interrelationship beween futures and spot price
+
+|                      | ARIMA               | VAR            |    
+| -------------        | -------------       |:-------------: | 
+| Variables influence  | Uni-directional     | Bi-directional | 
+
+## VAR Model
+**1. Analyse time series characteristics**
+<br> Import dataset/data visualise <br>
+**2. Test for causation amongst the time series**
+<br> Granger's Causality test
+<br> Cointegration test <br>
+**3. Split the series into train/test set**
+**4. Check for stationarity/transform to make stationary, if needed**
+<br> ADF test <br>
+**5. Find optimal order (p)**
+<br> AIC, BIC, FPE, HQIC <br>
+**6. Train the VAR Model of selected order (p)** <br>
+**7. Check for Serial Correlation of Residuals (errors)** 
+<br> Durbin Watson statistic <br>
+**8. Forecast**
+<br> Statsmodels <br>
+**9. Invert the transformation to get real forecast** <br>
+**10. Plot forecast v.s. actual** <br>
+**11. Evaluate forecast**
+<br> MAPE, ME, MAE, MPE, RMSE, corr, minmax
