@@ -17,6 +17,9 @@ activity, e.g. business cycles <br>
 
 ![Image](https://www.bounteous.com/sites/default/files/b_inline_20200914.png)
 
+**ACF**: Autocorrelation Function (ACF) <br>
+**PACF**: Partial Autocorrelation Function (PACF)
+
 ## Decomposition
 **Additive**: level + trend + seasonality + noise (linear-like behaviour) <br>
 **Multiplicative**: level * trend * seasonality * noise (exponential/quadratic/curved) <br>
@@ -37,8 +40,8 @@ seasonal_decompose(y)
 ```
 
 ## Check for Stationarity
-Stationary: if its statistical properties like mean, variance, and autocorrelation do not change over time <br>
-Non-stationary: trends and economic cycles <br>
+> Stationary: if its statistical properties like mean, variance, and autocorrelation do not change over time <br>
+Non-stationary: trends and economic cycles <br><br>
 As most time series forecasting models use stationarity - and mathematical transformations related to it - in order to make predictions, we need to **stationarize** to fit the model. <br>
 
 ## Augmented Dickey-Fuller (ADF) Test
@@ -110,7 +113,6 @@ BI-LSTM: backwards/forwards sequence information
 - Excellent accuracy in short-term forecasting, hard to apply for long-term
 - Commonly used to estimate the volatility of returns for stocks/currencies
 - GARCH considers volatility of the previous period, ARCH does not
-- GARCH used where variance error is believed to be serially autocorrelated
 - GARCH assume variance of the error term follows ARMA
 
 ![Image](https://cdn.corporatefinanceinstitute.com/assets/heteroskedasticity.png)
@@ -139,21 +141,21 @@ Documentations:
 
 ## VAR Model
 **1. Analyse time series characteristics**
-<br> Import dataset/data visualise <br>
+<br> Import dataset/data visualise <br><br>
 **2. Test for causation amongst the time series**
 <br> Granger's Causality test
-<br> Cointegration test <br>
-**3. Split the series into train/test set**
+<br> Cointegration test <br><br>
+**3. Split the series into train/test set** <br><br>
 **4. Check for stationarity/transform to make stationary, if needed**
-<br> ADF test <br>
+<br> ADF test <br><br>
 **5. Find optimal order (p)**
-<br> AIC, BIC, FPE, HQIC <br>
-**6. Train the VAR Model of selected order (p)** <br>
+<br> AIC, BIC, FPE, HQIC <br><br>
+**6. Train the VAR Model of selected order (p)** <br><br>
 **7. Check for Serial Correlation of Residuals (errors)** 
-<br> Durbin Watson statistic <br>
+<br> Durbin Watson statistic <br><br>
 **8. Forecast**
-<br> Statsmodels <br>
-**9. Invert the transformation to get real forecast** <br>
-**10. Plot forecast v.s. actual** <br>
+<br> Statsmodels <br><br>
+**9. Invert the transformation to get real forecast** <br><br>
+**10. Plot forecast v.s. actual** <br><br>
 **11. Evaluate forecast**
 <br> MAPE, ME, MAE, MPE, RMSE, corr, minmax
