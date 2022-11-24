@@ -135,6 +135,45 @@ Any stationary series can be decomposed into the sum of two unrelated processes,
 | ACF = Ts               | Ts tends to 0, S tends to infinity    | Ts = 0, S > q                       | Ts tends to 0
 | PACF = Tss             | Tss = 0, S > p                        | Tss tends to 0, S tends to infinity | Tss tends to 0, S tends to infinity
 
+# Readings: Chapter 6
+- A series is strictly stationary if the distribution of its values remains the same as time progresses
+- Stationary = constant mean, variance, autocovariance structure
+- Autocovariance = determine how y is related to its previous values
+- s = lag 
+- Autocorrelations (acf) = autocovariance normalised (by dividing by the variance)
+- White noise = each observtion uncorrelated with all other values in the sequence
+- Moving Average model = linear combinaton of white noise processes
+- Partial autocorrelation (pacf) = direct connections between yt and yt-s for s <= p
+- PACF - MA = invertibility (also kinda like stationarity)
+- ACF - AR = stationarity
+
+### Building ARMA models: the Box-Jenkins approach
+1. Identification
+2. Estimation
+3. Diagnostic Checking
+
+#### 1. Information Criteria
+1. Function of residual sum of squares (RSS)
+2. Some penalty for the loss of degrees of freedom from adding extra parameters
+
+e.g. Adding new variable/lag >>> RSS falls (more than) penalty term increases >>> information criteria value reduces
+
+- Akaika Information Criterion (AIC)
+- Bayesian Information Criterion (SBIC)
+- Hannan-Quinn Criterion (HQIC)
+
+AIC (less strict penalty) > HQIC > SBIC (strict penalty)
+
+#### 2. Estimation
+#### 3. Diagnostic Checking
+- Overfitting and Residual Diagnostics
+- Examining if residuals are free from autocorrelation
+
+#### ARIMA Modelling
+- 'I': Integrated
+- ARMA (p, q)
+- ARIMA(p, d, q)
+
 ### Week 4: Modelling Long-Run Relationships in Finance
 • Stationarity and Unit Root Testing <br>
 • Cointegration <br>
