@@ -169,6 +169,7 @@ AIC (less strict penalty) > HQIC > SBIC (strict penalty)
 
 ## ARIMA Modelling
 - 'I': Integrated
+> I stands for the no. of times differencing is needd to make the time series stationary. Applicable for real life as most data are non-stationary and need differencing.
 - ARMA(p, q)
 - ARIMA(p, d, q)
 
