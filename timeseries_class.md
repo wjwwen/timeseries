@@ -179,6 +179,19 @@ AIC (less strict penalty) > HQIC > SBIC (strict penalty)
 • Equilibrium Correction or Error Correction Models <br>
 • Testing for Cointegration in Regression <br>
 
+- Optimal forecasting = minimizing the mean squared 
+- Conditional expectations to forecast
+- Rolling windows, one step hat to forecast in the v
+- Theil’s U-statistic (1966): A U-statistic of one implies that the model under consideration and the benchmark model are equally (in)accurate, while a value of less than one implies that the model is superior to the benchmark, and vice versa for U > 1.
+- Time-series Econometrics: Cointegration and Autoregressive Conditional Heteroskedasticity
+- Spurious Regressions in Econometrics (CWJ Granger and P Newbold) - 1973
+- While the Durbin-Watson test is aimed at an autocorrelation of 1st order, the Breusch-Godfrey-test can also uncover autocorrelation of higher orders. In section 6.4 we then present various approaches to the estimation of multiple regression model with autocorrelated disturbance variables.
+
+- Yt = U1 + Yt-1 + Ut
+- Xt = u2 + Xt-1 + Ut
+- Both random walks are independent and non-stationary
+
+
 # Week 5 and 6: Modelling Volatility and Correlation
 • Models for Volatility <br>
 • Autoregressive Conditionally Heteroscedastic (ARCH) Models <br>
