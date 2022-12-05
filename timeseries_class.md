@@ -138,7 +138,7 @@ Any stationary series can be decomposed into the sum of two unrelated processes 
 - **s** = lag 
 - **c** = constant
 - **Autocorrelations (acf)** = autocovariance normalised (by dividing by the variance)
-- **White noise** = each observtion uncorrelated with all other values in the sequence
+- **White noise** = each observation uncorrelated with all other values in the sequence
 - **MA model** = linear combinaton of white noise processes
 - **Partial Autocorrelation (pacf)** = direct connections between yt and yt-s for s <= p
 
@@ -156,9 +156,9 @@ Any stationary series can be decomposed into the sum of two unrelated processes 
 
 e.g. Adding new variable/lag >>> RSS falls (more than) penalty term increases >>> information criteria value reduces (the lower, the better)
 
-- Akaika Information Criterion (AIC)
+- Akaike Information Criterion (AIC)
 - Bayesian Information Criterion (SBIC)
-- Hannan-Quinn Criterion (HQIC)
+- Hannah-Quinn Criterion (HQIC)
 
 AIC (less strict penalty) > HQIC > SBIC (strict penalty)
 
@@ -169,7 +169,7 @@ AIC (less strict penalty) > HQIC > SBIC (strict penalty)
 
 ## ARIMA Modelling
 - 'I': Integrated
-> I stands for the no. of times differencing is needd to make the time series stationary. Applicable for real life as most data are non-stationary and need differencing.
+> I stands for the no. of times differencing is needed to make the time series stationary. Applicable for real life as most data are non-stationary and need differencing.
 - ARMA(p, q)
 - ARIMA(p, d, q)
 
@@ -179,6 +179,7 @@ AIC (less strict penalty) > HQIC > SBIC (strict penalty)
 • Equilibrium Correction or Error Correction Models <br>
 • Testing for Cointegration in Regression <br>
 
+## Lecture Slides
 - Optimal forecasting = minimizing the mean squared 
 - Conditional expectations to forecast
 - Rolling windows, one step hat to forecast in the v
@@ -191,6 +192,66 @@ AIC (less strict penalty) > HQIC > SBIC (strict penalty)
 - Xt = u2 + Xt-1 + Ut
 - Both random walks are independent and non-stationary
 
+# Readings: Chapter 8
+- Stationary = constant mean, variance, autocovariance
+- Non-stationary data can lead to spurious regressions
+- Non-invertible MA = cannot be expressed in an autoregressive process
+
+Check if Y contains unit root:
+- I(0) = stationary
+- I(1) = 1 unit root, requires 1 differencing to induce stationarity
+- I(2) = 2 unit roots, require 2 differencing to induce stationarity
+- Majority just 1 unit root
+- 2 unit roots e.g.: nominal consumer prices and nominal wages
+
+### Dickey-Fuller Test for Unit Root:
+- Change in yt = ψyt−1 + ut
+- test of φ = 1 is equivalent to a test of ψ = 0 (since φ − 1 = ψ).
+- H0: series contains unit root
+- H1: series stationary
+
+### Philips-Perron (PP) tests:
+- More comprehensive theory of unit root non-stationarity
+- Considers unit roots in presence of known **structural breaks**
+- Structural breaks e.g.: changes in monetary policy/removal of exchange rate controls
+- "... short-term interest rates are best viewed as **unit root processes that have a structural break in their level around the time of Black Wednesday (1992) when the UK dropped out of the European Exchange Rate Mechanism. The longer term rates, on the other hand, are I(1) processes with no breaks"
+
+### Summary of ADF, PP, KPSS
+| ADF/PP          | KPSS                    | 
+| -----------     | -----------             |                 
+| H0: yt ∼ I(1)   | H0: yt ∼ I(0)           | 
+| H1: yt ∼ I(0)   | H1: yt ∼ I(1)           | 
+
+There are four possible outcomes: <br>
+(1) Reject H0 and Do not reject H0 <br>
+(2) Do not reject H0 and Reject H0 <br>
+(3) Reject H0 and Reject H0 <br>
+(4) Do not reject H0 and Do not reject H0 <br>
+
+For robust conclusions, results should fall under (1) or (2), <br>
+when both tests conclude that series = stationary. <br>
+
+<i> ADF = left-tailed test, KPSS = right-tailed test </i>
+
+### Seasonal Unit Roots
+- Seasonal differencing to induce stationarity
+- I(d, D)
+- d = no. of differencing
+- D = no. of seasonal differencing
+- Not widely adopted, as data better characterised with dummy variables
+
+### EViews Unit Root
+e.g. t-Statistic
+- Augmented Dickey-Fuller test statistic = -0.47
+- Test critical values: 
+- 1% level - -3.45
+- 5% level - -2.87
+- 10% level - -2.57
+As the test statistic < critical values, the null hypothesis of a unit root cannot be rejected
+
+### Cointegration
+> I(1) variables will be I(0) = stationary
+- Error correction model = equilibrium correction model
 
 # Week 5 and 6: Modelling Volatility and Correlation
 • Models for Volatility <br>
