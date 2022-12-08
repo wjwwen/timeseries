@@ -139,7 +139,7 @@ Any stationary series can be decomposed into the sum of two unrelated processes 
 - **c** = constant
 - **Autocorrelations (acf)** = autocovariance normalised (by dividing by the variance)
 - **White noise** = each observation uncorrelated with all other values in the sequence
-- **MA model** = linear combinaton of white noise processes
+- **MA model** = linear combination of white noise processes
 - **Partial Autocorrelation (pacf)** = direct connections between yt and yt-s for s <= p
 
 > PACF for MA = invertibility (also kinda like stationarity for AR)
@@ -180,13 +180,13 @@ AIC (less strict penalty) > HQIC > SBIC (strict penalty)
 • Testing for Cointegration in Regression <br>
 
 ## Lecture Slides
-- Optimal forecasting = minimizing the mean squared 
-- Conditional expectations to forecast
-- Rolling windows, one step hat to forecast in the v
-- Theil’s U-statistic (1966): A U-statistic of one implies that the model under consideration and the benchmark model are equally (in)accurate, while a value of less than one implies that the model is superior to the benchmark, and vice versa for U > 1.
-- Time-series Econometrics: Cointegration and Autoregressive Conditional Heteroskedasticity
-- Spurious Regressions in Econometrics (CWJ Granger and P Newbold) - 1973
-- While the Durbin-Watson test is aimed at an autocorrelation of 1st order, the Breusch-Godfrey-test can also uncover autocorrelation of higher orders. In section 6.4 we then present various approaches to the estimation of multiple regression model with autocorrelated disturbance variables.
+• Optimal forecasting = minimizing the mean squared <br>
+• Conditional expectations to forecast <br>
+• Rolling windows, one step hat to forecast in the v <br>
+• Theil’s U-statistic (1966): A U-statistic of one implies that the model under consideration and the benchmark model are equally (in)accurate, while a value of less than one implies that the model is superior to the benchmark, and vice versa for U > 1. <br>
+•  Time-series Econometrics: Cointegration and Autoregressive Conditional Heteroskedasticity <br>
+•  Spurious Regressions in Econometrics (CWJ Granger and P Newbold) - 1973 <br>
+•  While the Durbin-Watson test is aimed at an autocorrelation of 1st order, the Breusch-Godfrey-test can also uncover autocorrelation of higher orders. In section 6.4 we then present various approaches to the estimation of multiple regression model with autocorrelated disturbance variables. <br>
 
 - Yt = U1 + Yt-1 + Ut
 - Xt = u2 + Xt-1 + Ut
@@ -216,11 +216,15 @@ Check if Y contains unit root:
 - Structural breaks e.g.: changes in monetary policy/removal of exchange rate controls
 - "... short-term interest rates are best viewed as **unit root processes that have a structural break in their level around the time of Black Wednesday (1992) when the UK dropped out of the European Exchange Rate Mechanism. The longer term rates, on the other hand, are I(1) processes with no breaks"
 
+Advantage of PP test:
+- robust to general forms of heteroskedasticity in the error term ut.
+- Another advantage is that the user does not have to specify a lag length for the test regression.
+
 ### Summary of ADF, PP, KPSS
-| ADF/PP          | KPSS                    | 
-| -----------     | -----------             |                 
-| H0: yt ∼ I(1)   | H0: yt ∼ I(0)           | 
-| H1: yt ∼ I(0)   | H1: yt ∼ I(1)           | 
+| ADF/PP unit root tests          | KPSS stationarity test  | 
+| -----------                     | -----------             |                 
+| H0: yt ∼ I(1)                   | H0: yt ∼ I(0)           | 
+| H1: yt ∼ I(0)                   | H1: yt ∼ I(1)           |  
 
 There are four possible outcomes: <br>
 (1) Reject H0 and Do not reject H0 <br>
@@ -254,7 +258,7 @@ As the test statistic < critical values, the null hypothesis of a unit root cann
 - Error correction model = equilibrium correction model
 
 # Week 5 and 6: Modelling Volatility and Correlation
-• Models for Volatility <br>
+>• Models for Volatility <br>
 • Autoregressive Conditionally Heteroscedastic (ARCH) Models <br>
 • Generalized ARCH (GARCH) Models <br>
 • Estimation of ARCH/GARCH Models <br>
@@ -263,9 +267,113 @@ As the test statistic < critical values, the null hypothesis of a unit root cann
 • GARCH-in-Mean <br>
 • Use of GARCH Models Including Volatility Forecasting <br>
 
-# Misc
-Individual Assignment <br>
-ARMA returns <br>
-GARCH volatility <br> 
-ARMA-GARCH model <br>
-Final Exam - proposing a model/opinions
+## Engle-Granger methodology 
+The first step generates the residuals and the second step employs generated residuals to estimate a regression of first- differenced residuals on lagged residuals. Hence, any possible error from the first step will be carried into second step.
+
+1. All variables are I(1)
+2. Use the step 1 residuals as one variable in the error correction model 
+
+I(1) >>> If non-stationary, there is no long-term relationship; just take the differences and calculate short-term >>> short-term error correction model (spurious!!!)
+
+I(0) >>> If stationary, there is true long-term relationship that cannot be ignored; must not propose short term >>> propose long-term error correction model
+
+# Readings: Chapter 9
+## ARCH
+ARCH then GARCH
+ARCH provides a framework for time series models of volatility.
+- First compute the Engle test for Arch effects to make sure that this class of models is appropriate for the data
+1. Quick > Estimate Equation > rgbp c ar(1) ma(1) 
+2. View > Residual Diagnostics > Heteroskedasticity Tests
+"... Both the F-version and the LM-statistic are very significant, suggesting that the presence of ARCH"
+
+Limitations of ARCH:
+1. Value of q (no. of lags) of squared residual can be decided with the use of likelihood ratio test (but no clear best approach)
+2. Value of q (no. of lags) of squared error might be very large, resulting in large conditional variance model that is not parsimonious
+Engle (1982) circumvented this problem by specifying an arbitrary linearly declining lag length on ARCH(4)
+
+- A test for the presence of **ARCH in the residuals** is calculated by regressing the squared residuals on a constant and p lags, where p is set by the user
+
+## GARCH
+GARCH-type models can be used to forecast volatility. 
+One primary usage of GARCH-type models is in forecasting volatility 
+e.g. pricing of financial options where volatility is an input to the pricing model
+
+- GARCH = ARMA model for the conditional variance
+- GARCH is more parsimonious, avoid overfitting, less likely to breach non-negativity constraints
+- GARCH(1,1) model will be sufficient to capture the volatility clustering in the data, and rarely is any higher order model estimated.
+- GARCH (1,1) = ARCH(infinity)
+- IGARCH = Integrated GARCH, 'unit root in variance'
+- OLS cannot be used for GARCH; OLS minimises the RSS (residue sum of square); RSS depends only on parameters in the conditional mean equation, and not the conditional variance
+- Use maximum likelihood - finding the most likely values of parameter values given the actual data. Form log-likelihood function (LLF) 
+
+### Limitations of GARCH
+1. Enforce a symmetric response of volatility to positive/negative shocks
+(A negative shock to financial time series is likely to cause volatility to rise **more than** a positive shock of the same magnitude)
+
+## Alternatives/Asymmetric formulations:
+### 1. (Threshold) T-GARCH (GJR) Model - overcome leverage effects <br>
+> Impact of bad news > impact of good news <br>
+Alpha + Gamma = Impact of bad news <br>
+Alpha = Impact of good news <br>
+
+### 2. EGARCH Model - overcome negativity constraints <br>
+EGARCH also covers asymmetric effect/leverage effects <br>
+EGARCH is better than TGARCH <br>
+- No need to artificially impose non-negativity constraints on the model parameters <br>
+> Impact of bad news > impact of good news <br>
+Alpha + Gamma = Impact of bad news <br>
+Alpha - Gamma = Impact of good news <br>
+
+### 3. GARCH-in-mean
+- Incorporate volatility into the mean equation so that we link return to volatility
+- Higher risk, higher return
+
+- The return partly determined by its risks
+- Conditional variance of asset returns enters into the conditional mean equation
+
+Tests for asymmetries in volatility
+1. Engle and Ng - determine whether an asymmetric model is required for a given series, or symmetric GARCH is deemed adequte
+
+## EViews
+- The default is to estimate with 1 ARCH and 1 GARCH (i.e. one lag of the squared errors and one lag of the conditional variance, respectively)
+- GARCH(1,1) dynamic v.s. static forecasts
+- Static forecasts are rolling one-step ahead forecasts for the conditional variance, showing more volatility than dynamic forecasts
+
+# Recap
+*** Always propose structural time series model first <br>
+*** Either structural/pure, need to check if residues is white noise <br>
+*** White noise is distribution free <br>
+
+1. Check Stationarity: Unit Root Test <br>
+If I(1) i.e. not stationary, use differencing to make the model stationary <br>
+If I(0) all good, no need to use differencing
+3. Residues Analysis: Check if proposed model is a good approximation - if residues is white noise
+4. Check cointegration: Engle-Granger cointegration test <br>
+Part 1 > All variables are I(1) <br>
+Part 2 > Use the step 1 residuals as one variable in the error correction model <br>
+5. Check variance of the residuals <br>
+If variance is unchanged, just use simple time series <br>
+If variance is different, use ARCH/GARCH
+
+6. Test for 'ARCH Effects'
+- If the squared residuals/errors of your time series model exhibit autocorrelation, then ARCH effects are present.
+- If ARCH effects are significant, cannot assume white noise are IID; in fact it is just uncorrelated... Need to use another model
+- A time series exhibiting conditional heteroscedasticity—or autocorrelation in the squared series—is said to have autoregressive conditional heteroscedastic (ARCH) effects. Engle's ARCH test is a Lagrange multiplier test to assess the significance of ARCH effects
+- If you do not reject null hypothesis >>> use the basic model
+- IF you reject null hypothesis, at least one of alpha (i) not equal to 0 >>> use ARCH model
+
+# Miscellaneous
+### Multivariate GARCH formulations
+- VECH/Diagonal VECH/BEKK models
+
+### Model estimation for multivariate GARCH
+- Under the assumption of conditional normality, the parameters of multivariate GARCH models of any of the above specifications can be estimated by maximising the log-likelihood function
+
+Questions:
+1. When to use ADF/PP test?
+Adf test is used when the errors are homoscedastic and PP test is preferred for heteroscedastic errors.
+
+2. Why QLE (Quasi Likelihood) instead of MLE (Maximum Likelihood) for GARCH? <br>
+Using QLE is better.
+You can use the typical MLE when you know that your zq do indeed follow a normal distribution. Otherwise, when you can see, for example via appropriate tests, that your zq are not normally distributed, you should use QML (as long as the innovations are iid with zero mean and unit variance).
+> See https://stats.stackexchange.com/questions/416964/qml-vs-mle-for-gjr-garch-models
