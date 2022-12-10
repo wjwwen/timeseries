@@ -109,7 +109,6 @@ Any stationary series can be decomposed into the sum of two unrelated processes 
 - The Q-statistic is a test statistic output by either the Box-Pierce test/modified version which provides better small sample properties, by the Ljung-Box test. It follows the chi-squared distribution. 
 
 ### Lags
-- Ts definitely equals to 0 if X variant Q 
 - Q = MA models
 - lag s
 - AR(p): Ts tends to 0, S tends to 0
@@ -174,7 +173,7 @@ AIC (less strict penalty) > HQIC > SBIC (strict penalty)
 - ARIMA(p, d, q)
 
 # Week 4: Modelling Long-Run Relationships in Finance
-• Stationarity and Unit Root Testing <br>
+>• Stationarity and Unit Root Testing <br>
 • Cointegration <br>
 • Equilibrium Correction or Error Correction Models <br>
 • Testing for Cointegration in Regression <br>
