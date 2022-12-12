@@ -172,6 +172,10 @@ AIC (less strict penalty) > HQIC > SBIC (strict penalty)
 - ARMA(p, q)
 - ARIMA(p, d, q)
 
+## Inverted AR Roots/MA Roots
+- The inverses of the AR and MA roots can be used to check whether the process implied by the model is stationary and inverstible.
+- To be stationary and invertible, respectively: inverted roots in each case < 1 in absolute value. 
+
 # Week 4: Modelling Long-Run Relationships in Finance
 >• Stationarity and Unit Root Testing <br>
 • Cointegration <br>
@@ -250,7 +254,7 @@ e.g. t-Statistic
 - 1% level - -3.45
 - 5% level - -2.87
 - 10% level - -2.57
-As the test statistic < critical values, the null hypothesis of a unit root cannot be rejected
+As the test statistic > critical values, the null hypothesis of a unit root cannot be rejected
 
 ### Cointegration
 > I(1) variables will be I(0) = stationary
@@ -271,10 +275,6 @@ The first step generates the residuals and the second step employs generated res
 
 1. All variables are I(1)
 2. Use the step 1 residuals as one variable in the error correction model 
-
-I(1) >>> If non-stationary, there is no long-term relationship; just take the differences and calculate short-term >>> short-term error correction model (spurious!!!)
-
-I(0) >>> If stationary, there is true long-term relationship that cannot be ignored; must not propose short term >>> propose long-term error correction model
 
 # Readings: Chapter 9
 ## ARCH
